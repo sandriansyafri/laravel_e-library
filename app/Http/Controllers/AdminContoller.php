@@ -18,15 +18,15 @@ class AdminContoller extends Controller
 {
     public function test_spatie()
     {
-        // $role = Role::create(['name' => 'admin']);
-        // $permission = Permission::create(['name' => 'page_peminjaman']);
+        $role = Role::create(['name' => 'admin']);
+        $permission = Permission::create(['name' => 'page_peminjaman']);
 
-        // $role->givePermissionTo($permission);
-        // $permission->assignRole($role);
-        // $user = User::firstWhere('email', 'sandrian@gmail.com');
-        // $user->assignRole('admin');
+        $role->givePermissionTo($permission);
+        $permission->assignRole($role);
+        $user = User::firstWhere('email', 'sandrian@gmail.com');
+        $user->assignRole('admin');
 
-        // $user = User::with('roles')->get();
+        $user = User::with('roles')->get();
         $user = User::with(['roles'])->get();
         return $user;
     }
@@ -137,12 +137,8 @@ class AdminContoller extends Controller
 
     public function peminjaman()
     {
-        if (auth()->user()->can('page_peminjaman')) {
-            $anggotas = Anggota::all();
-            $bukus = Buku::all();
-            return view('admin.peminjaman.index', compact(['anggotas', 'bukus']));
-        } else {
-            return abort('403');
-        }
+        $anggotas = Anggota::all();
+        $bukus = Buku::all();
+        return view('admin.peminjaman.index', compact(['anggotas', 'bukus']));
     }
 }

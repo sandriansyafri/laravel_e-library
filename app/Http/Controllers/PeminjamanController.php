@@ -17,7 +17,6 @@ class PeminjamanController extends Controller
      */
     public function index(Request $request)
     {
-
         $datas = Peminjaman::select('*', DB::raw('DATEDIFF(tgl_kembali,tgl_pinjam) as lama_pinjam'))->get();
 
         if ($request->status) {

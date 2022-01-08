@@ -17,8 +17,6 @@
 @endpush
 
 @section('content')
- {{-- @role('admin') --}}
- {{-- @can('page_peminjaman') --}}
     <div id="controller">
         <div class="container-fluid">
 
@@ -261,8 +259,6 @@
             {{-- End Modal Detail Peminjaman  --}}
       </div>
     </div>
-  {{-- @endcan --}}
-  {{-- @endrole --}}
 @endsection
 
 @push('js')
