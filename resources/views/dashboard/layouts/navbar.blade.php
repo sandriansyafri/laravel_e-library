@@ -14,21 +14,6 @@
     </ul>
 
     <ul class="navbar-nav ml-auto">
-      <li class="nav-item dropdown">
-        <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-          <span class="dropdown-item dropdown-header">User  Melewati Batas Pinjam  </span>
-          <div class="dropdown-divider"></div>
-              @forelse (dataPassDay() as $data)
-              <a href="#" class="dropdown-item">
-                <i class="fas fa-user text-danger mr-1"></i> {{ $data->anggota->name }}
-                <span class="float-right text-muted text-sm">{{ $data->lama_lewat }} hari</span>
-              </a>
-              @empty
-              <span class="dropdown-item dropdown-header">Belum ada   </span>
-              @endforelse
-          <div class="dropdown-divider"></div>
-        </div>
-      </li>
         <li class="nav-item ">
           <form action="{{ route('logout') }}" method="post">
               @csrf
