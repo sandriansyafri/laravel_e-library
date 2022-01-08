@@ -38,10 +38,16 @@ class AdminContoller extends Controller
         $total_penerbit = Penerbit::count();
         $total_peminjaman = Peminjaman::count();
 
-        $label_penerbits = Penerbit::join('bukus', 'penerbits.id', '=', 'bukus.id_penerbit')
-            ->orderBy('bukus.id_penerbit', 'ASC')
-            ->groupBy('penerbits.id')
-            ->pluck('penerbits.nama_penerbit');
+        // $label_penerbits = Penerbit::join('bukus', 'penerbits.id', '=', 'bukus.id_penerbit')
+        //     ->orderBy('bukus.id_penerbit', 'ASC')
+        //     ->groupBy('penerbits.id')
+        //     ->pluck('penerbits.nama_penerbit');
+        $label_penerbits = Penerbit::with(['buku' => function ($query) {
+            $query->orderBy('id_penerbit');
+        }])
+            ->groupBy('id')
+            ->pluck('nama_penerbit');
+
 
         $data_penerbits = Buku::select(DB::raw('COUNT(id_penerbit) as total'))
             ->groupBy('id_penerbit')
